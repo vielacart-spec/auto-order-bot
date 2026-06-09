@@ -3,6 +3,7 @@ from telegram.ext import Application, CommandHandler, CallbackQueryHandler, Cont
 import os
 
 TOKEN = os.getenv("BOT_TOKEN")
+ADMIN_ID = 7568261625
 
 def format_rupiah(amount):
     return f"Rp {amount:,}".replace(",", ".")
