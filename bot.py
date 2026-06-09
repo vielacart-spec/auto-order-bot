@@ -37,7 +37,7 @@ def main_menu(name):
 
     text = (
     f"{greeting}, {name}\n\n"
-    "VIELACART STORE\n\n"
+    "OYCE STUFF\n\n"
     "1. Amazon Prime - 0 Stok\n"
     "2. Bstation - 0 Stok\n"
     "3. Canva - 0 Stok\n"
