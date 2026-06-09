@@ -112,6 +112,38 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     name = query.from_user.first_name or "User"
 
+if query.data == "next":
+    await query.edit_message_text(
+        "OYCE STUFF\n\n"
+        "16. Picsart - 0 Stok\n"
+        "17. Scribd - 0 Stok\n"
+        "18. Simerah - 0 Stok\n"
+        "19. Spotify - 0 Stok\n"
+        "20. VPN Express - 0 Stok\n"
+        "21. WeTV - 0 Stok\n"
+        "22. Youku - 0 Stok\n"
+        "23. YouTube - 0 Stok\n"
+        "24. Zoom - 0 Stok",
+        reply_markup=InlineKeyboardMarkup([
+            [
+                InlineKeyboardButton("16", callback_data="p16"),
+                InlineKeyboardButton("17", callback_data="p17"),
+                InlineKeyboardButton("18", callback_data="p18"),
+            ],
+            [
+                InlineKeyboardButton("19", callback_data="p19"),
+                InlineKeyboardButton("20", callback_data="p20"),
+                InlineKeyboardButton("21", callback_data="p21"),
+            ],
+            [
+                InlineKeyboardButton("22", callback_data="p22"),
+                InlineKeyboardButton("23", callback_data="p23"),
+                InlineKeyboardButton("24", callback_data="p24"),
+            ],
+            [InlineKeyboardButton("Kembali", callback_data="menu")]
+        ])
+    )
+    return
     if query.data == "saldo":
         await query.edit_message_text(
             "💰 Saldo Kamu\n\n"
