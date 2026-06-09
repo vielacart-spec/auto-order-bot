@@ -1,35 +1,99 @@
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, ContextTypes
 import os
+from datetime import datetime
+from zoneinfo import ZoneInfo
 
 TOKEN = os.getenv("BOT_TOKEN")
 ADMIN_ID = 7568261625
 
+def get_greeting():
+    hour = datetime.now(ZoneInfo("Asia/Jakarta")).hour
+
+    if 0 <= hour < 5:
+        return "Selamat Dini Hari"
+    elif hour < 11:
+        return "Selamat Pagi"
+    elif hour < 15:
+        return "Selamat Siang"
+    elif hour < 18:
+        return "Selamat Sore"
+    else:
+        return "Selamat Malam"
+
+def get_wib_time():
+    return datetime.now(
+        ZoneInfo("Asia/Jakarta")
+    ).strftime("%d %b %y - %H:%M:%S WIB")
+    
 def format_rupiah(amount):
     return f"Rp {amount:,}".replace(",", ".")
 
 def main_menu(name):
     saldo = 0
 
+    greeting = get_greeting()
+    current_time = get_wib_time()
+
     text = (
-        f"👋 Halo, {name}!\n\n"
-        f"💰 Saldo: {format_rupiah(saldo)}\n\n"
-        "Silakan pilih menu:"
-    )
+    f"{greeting}, {name}\n\n"
+    "VIELACART STORE\n\n"
+    "1. Amazon Prime - 0 Stok\n"
+    "2. Bstation - 0 Stok\n"
+    "3. Canva - 0 Stok\n"
+    "4. CapCut - 0 Stok\n"
+    "5. ChatGPT - 0 Stok\n"
+    "6. Gemini AI - 0 Stok\n"
+    "7. Grok AI - 0 Stok\n"
+    "8. Gsuite x Gopay - 0 Stok\n"
+    "9. HBO - 0 Stok\n"
+    "10. iQIYI - 0 Stok\n"
+    "11. Kiro AI - 0 Stok\n"
+    "12. Loklok - 0 Stok\n"
+    "13. Meitu - 0 Stok\n"
+    "14. Microsoft 365 - 0 Stok\n"
+    "15. Notion AI - 0 Stok\n"
+    f"{current_time}\n\n"
+    "Shortcut Bot:\n"
+    "/start - Menu"
+)
 
     keyboard = [
-        [
-            InlineKeyboardButton("💰 Saldo", callback_data="saldo"),
-            InlineKeyboardButton("📦 Produk", callback_data="produk"),
-        ],
-        [
-            InlineKeyboardButton("🛒 Pesanan", callback_data="pesanan"),
-            InlineKeyboardButton("ℹ️ Informasi", callback_data="info"),
-        ],
-        [
-            InlineKeyboardButton("👤 Profil", callback_data="profil"),
-        ],
-    ]
+    [InlineKeyboardButton("Saldo Rp 0", callback_data="saldo")],
+
+    [
+        InlineKeyboardButton("1", callback_data="p1"),
+        InlineKeyboardButton("2", callback_data="p2"),
+        InlineKeyboardButton("3", callback_data="p3"),
+        InlineKeyboardButton("4", callback_data="p4"),
+        InlineKeyboardButton("5", callback_data="p5"),
+    ],
+
+    [
+        InlineKeyboardButton("6", callback_data="p6"),
+        InlineKeyboardButton("7", callback_data="p7"),
+        InlineKeyboardButton("8", callback_data="p8"),
+        InlineKeyboardButton("9", callback_data="p9"),
+        InlineKeyboardButton("10", callback_data="p10"),
+    ],
+
+    [
+        InlineKeyboardButton("11", callback_data="p11"),
+        InlineKeyboardButton("12", callback_data="p12"),
+        InlineKeyboardButton("13", callback_data="p13"),
+        InlineKeyboardButton("14", callback_data="p14"),
+        InlineKeyboardButton("15", callback_data="p15"),
+    ],
+
+    [InlineKeyboardButton("Next", callback_data="next")],
+
+    [InlineKeyboardButton("Absen", callback_data="absen")],
+
+    [
+        InlineKeyboardButton("Pesanan", callback_data="pesanan"),
+        InlineKeyboardButton("Informasi", callback_data="info"),
+    ],
+]
 
     return text, InlineKeyboardMarkup(keyboard)
 
